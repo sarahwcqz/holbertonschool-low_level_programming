@@ -1,7 +1,7 @@
 #include "main.h"
 /**
  * times_table - prints the 9 times table
- * @i, j: int
+ * @i, j, p: int
  * Return: void
  */
 void times_table(void)
@@ -14,29 +14,32 @@ void times_table(void)
 		{
 			int p = i * j;
 
-			if (p < 10 && j < 9)
+			if (i == 0)
 			{
+				_putchar('0');
+				_putchar(',');
+			}
+			else if (p < 10)
+			{
+				_putchar(' ');
+				_putchar(' ');
 				_putchar('0' + p);
 				_putchar(',');
-				_putchar(' ');
 			}
-			else if (p >= 10 && j < 9)
+			else if (j == 9)
 			{
+				_putchar(' ');
 				_putchar('0' + p / 10);
 				_putchar('0' + p % 10);
-				_putchar(',');
-				_putchar(' ');
-			}
-			else if (p < 10 && j == 9)
-			{
-				_putchar('0' + p);
 			}
 			else
 			{
+				_putchar(' ');
 				_putchar('0' + p / 10);
 				_putchar('0' + p % 10);
+				_putchar(',');
 			}
 		}
-		_putchar('\n');
+	_putchar('\n');
 	}
 }

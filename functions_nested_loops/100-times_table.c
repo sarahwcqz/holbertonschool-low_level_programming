@@ -23,10 +23,12 @@ if (n > 0 && n < 15)
 				if (p < 10)
 				{
 					_putchar(' ');
+					_putchar(' ');
 					_putchar('0' + p);
 				}
 				else if (p < 100)
 				{
+					_putchar(' ');
 					_putchar('0' + p / 10);
 					_putchar('0' + p % 10);
 				}

@@ -14,30 +14,42 @@ void times_table(void)
 		{
 			int p = x * y;
 
-			if (x == 0)
+			if (y == 0)
 			{
-				_putchar(x);
-				_putchar(',');
-			}
-			else if (p < 10 || (y == 9 && x == 0))
-			{
-				_putchar(' ');
-				_putchar(' ');
 				_putchar('0' + p);
 				_putchar(',');
 			}
 			else if (y == 9)
 			{
-				_putchar(' ');
-				_putchar('0' + p / 10);
-				_putchar('0' + p % 10);
+				if (p < 10)
+				{
+					_putchar(' ');
+					_putchar(' ');
+					_putchar('0' + p);
+				}
+				else
+				{
+					_putchar(' ');
+					_putchar('0' + p / 10);
+					_putchar('0' + p % 10);
+				}
 			}
 			else
 			{
-				_putchar(' ');
-				_putchar('0' + p / 10);
-				_putchar('0' + p % 10);
-				_putchar(',');
+				if (p < 10)
+				{
+					_putchar(' ');
+					_putchar(' ');
+					_putchar('0' + p);
+					_putchar(',');
+				}
+				else
+				{
+					_putchar(' ');
+					_putchar('0' + p / 10);
+					_putchar('0' + p % 10);
+					_putchar(',');
+				}
 			}
 		}
 	_putchar('\n');

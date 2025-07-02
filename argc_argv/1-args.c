@@ -5,7 +5,7 @@
  * @argv: array containing the args
  * Return: 0
  */
-int main(int argc, char *argv[])
+int main(int argc, char *argv[] __attribute__((unused)))
 {
 	int i = 0;
 

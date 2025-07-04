@@ -7,17 +7,9 @@
  */
 int main(int argc, char *argv[] __attribute__((unused)))
 {
-	int i = 0;
-
 	if (argc == 0)
 		printf("0");
 	else
-	{
-		while (i < argc - 1)
-		{
-			i++;
-		}
-		printf("%d\n", i);
-	}
+		printf("%d\n", argc - 1);
 	return (0);
 }

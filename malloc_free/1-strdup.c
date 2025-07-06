@@ -10,7 +10,7 @@ char *_strdup(char *str)
 {
 	int i = 0;
 	int j = 0;
-	char *ptr;
+	char *ptr = NULL;
 
 	while (str[i] != '\0')
 		i++;

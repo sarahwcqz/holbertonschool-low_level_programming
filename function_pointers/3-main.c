@@ -20,7 +20,7 @@ int main(int argc, char *argv[])
 		exit(98);
 	}
 
-	if (*argv[2] == (43 || 45 || 42 || 47 || 37))
+	if (get_op_func(argv[2]) == NULL)
 	{
 		printf("Error\n");
 		exit(99);

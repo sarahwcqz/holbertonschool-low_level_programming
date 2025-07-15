@@ -26,12 +26,6 @@ int main(int argc, char *argv[])
 		exit(99);
 	}
 
-	if ((*argv[2] == 47 || *argv[2] == 25) && *argv[3] == 0)
-	{
-		printf("Error\n");
-		exit(100);
-	}
-
 /** isoler a + isoler b + isoler op */
 	a = atoi(argv[1]);
 	b = atoi(argv[3]);

@@ -1,5 +1,6 @@
 #include "variadic_functions.h"
 #include <stdio.h>
+#include <stdlib.h>
 #include <stdarg.h>
 /**
  * print_numbers - variadic fnctn that prints numbers,
@@ -13,13 +14,16 @@ void print_numbers(const char *separator, const unsigned int n, ...)
 	unsigned int i = 0;
 	va_list args;
 
-	va_start(args, n);
-
-	while (i < n)
+	if (separator != NULL)
 	{
-		printf("%i", va_arg(args, int));
-		printf("%s", separator);
-		i++;
+		va_start(args, n);
+
+		while (i < n)
+		{
+			printf("%i", va_arg(args, int));
+			printf("%s", separator);
+			i++;
+		}
+		printf("\n");
 	}
-	printf("\n");
 }

@@ -6,32 +6,69 @@
  * @format: list of all types of arg that are passed
  * Return: void
  */
-void print_all(const char * const format, ...)
+
+ /*----------------------functions for each type--------------------------*/
+ /**
+  * print_char - prints if it is a char
+  * @
+  * Return: void
+  */
+void print_char(va_list args)
 {
+	printf("%c", va_arg(args, int));
+}
+
+/**
+ * print int - prints if it is an int
+ * @ 
+ *  Return: void
+ */
+void print_int(va_list args)
+{
+	printf("%i", va_arg(args, int));
+}
+
+
+void print_float(va_list args)
+{
+	printf("%f", va_arg(args, double));
+}
+
+void print_string(va_list args)
+{
+	char *str = va_arg(args, char *);
+
+	if (str == NULL)
+		str = "(nil)";
+	printf("%s", str);
+}
+
+/*---------------------------main fctn-----------------------------------*/
+	void print_all(const char * const format, ...)
+{
+
+/*----struct that associates each type w/ correspdng function ------*/
 	templ types[] = {
-		{"c", 'char'},
-		{"i", 'int'},
-		{"f", 'float'},
-		{"s", 'char *'},
+		{"c", print_char},
+		{"i", print_int},
+		{"f", print_float},
+		{"s", print_string},
 		{NULL, NULL}
 	};
 
-	int i = 1, j = 0;
+
+	int i = 0, j = 0;
 	va_list args;
 
 	va_start(args, format);
 
-	while (i < format)
+	while (format[i] != '\0' && format)
 	{
 		j = 0;
-		while (*(types.indiq[j]) != NULL)
+		while ((types[j].indiq) != NULL)
 		{
-			if (format[i - 1] == types.indiq[j])
-				printf("%*(types.indiq[j])", va_arg(args, *(types.str[i - 1]));
-
-			if (*(format[i - 1] != ('c' && 'i' && 'f' && 's')))
-				format[i - 1] = NULL;
-
+			if (format[i] == (*types[j].indiq))
+				types[j].print(args);
 			j++;
 		}
 		i++;

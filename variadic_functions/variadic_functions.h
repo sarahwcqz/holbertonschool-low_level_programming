@@ -8,12 +8,11 @@ void print_all(const char * const format, ...);
 /**
  * struct template - struct containing allowed char and matching type
  * @indiq: character
- * @str: the matching type
  */
 typedef struct template
 	{
-		char indiq;
-		char *str;
+		char *indiq;
+		void (*print)(va_list);
 	} templ;
 
 #endif

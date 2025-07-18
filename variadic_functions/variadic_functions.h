@@ -11,6 +11,8 @@ void print_all(const char * const format, ...);
 /**
  * struct template - struct containing allowed char and matching type
  * @indiq: character
+ * @print: fonction that will print the arg depending on the type
+ * Return: void
  */
 typedef struct template
 	{

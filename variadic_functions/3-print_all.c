@@ -71,7 +71,7 @@ void print_string(va_list args)
 	int i = 0, j = 0;
 /* flag = nous permet de savoir si il y a match entre le char et un char */
 /* de la structure ==> permet le if a la fin*/
-	int flag = 0;
+/*flag = 0;*/
 	va_list args;
 
 	va_start(args, format);
@@ -79,19 +79,19 @@ void print_string(va_list args)
 	while (format[i] != '\0' && format)
 	{
 		j = 0;
-		flag = 0;
+/*		flag = 0;*/
 /* se deplace dans la struct*/
 		while ((types[j].indiq) != NULL)
 		{
 			if (format[i] == (*types[j].indiq))
 			{
-				flag = 1;
+/*			flag = 1; */
 				types[j].print(args);
 			}
 			j++;
 		}
 /* print the comma and space ONLY IF it's not the last arg to be printed */
-		if ((format[i + 1] != '\0') && (flag == 1))
+		if (format[i + 1] != '\0') /* && (flag == 1)) */
 			printf(", ");
 		i++;
 	}

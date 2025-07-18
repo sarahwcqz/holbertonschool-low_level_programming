@@ -1,6 +1,5 @@
 #include "variadic_functions.h"
-#include <stdio.h>
-#include <stdarg.h>
+
 /**
  * print_all - fctn that prints any types of param passed to
  * @format: list of all types of arg that are passed
@@ -20,7 +19,7 @@ void print_char(va_list args)
 
 /**
  * print int - prints if it is an int
- * @ 
+ *
  *  Return: void
  */
 void print_int(va_list args)

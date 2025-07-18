@@ -40,8 +40,8 @@ void print_string(va_list args)
 {
 	char *str = va_arg(args, char *);
 
-	if (str == NULL)
-		str = "(nil)";
+/*	if (str == NULL)
+		str = "(nil)"; */
 	printf("%s", str);
 }
 
@@ -57,7 +57,6 @@ void print_string(va_list args)
  */
 	void print_all(const char * const format, ...)
 {
-
 /*----struct that associates each type w/ correspdng function ------*/
 	templ types[] = {
 		{"c", print_char},
@@ -66,7 +65,6 @@ void print_string(va_list args)
 		{"s", print_string},
 		{NULL, NULL}
 	};
-
 
 	int i = 0, j = 0;
 /* flag = nous permet de savoir si il y a match entre le char et un char */
@@ -80,9 +78,10 @@ void print_string(va_list args)
 	{
 		j = 0;
 		flag = 0;
-/* se deplace dans la struct*/
+ /*se deplace dans la struct*/
 		while ((types[j].indiq) != NULL)
 		{
+			/* si le char en arg0 match un des char de l struct */
 			if (format[i] == (*types[j].indiq))
 			{
 			flag = 1;

@@ -26,7 +26,6 @@ ssize_t read_textfile(const char *filename, size_t letters)
 		return (0);
 	}
 	retW = write(1, buf, retR);
-	write(1, "\n", 1);
 	if (retW == -1 || retW != retR)
 	{
 		free(buf);
@@ -37,5 +36,5 @@ ssize_t read_textfile(const char *filename, size_t letters)
 	free(buf);
 	close(fd);
 
-	return (retW + 1);
+	return (retW);
 }

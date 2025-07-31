@@ -9,9 +9,9 @@
 int main(int argc, char *argv[])
 {
 	char *file_from, *file_to;
-	int fd_from, ret_rd_from, ret_close_from;	/*file_from */
-	int fd_to, ret_wr_to, ret_close_to;			/* file_to*/
-	char *buff[1024];
+	int fd_from, rd_bytes, ret_close_from;		/*file_from */
+	int fd_to, wr_bytes, ret_close_to;			/* file_to*/
+	char buffer[1024];
 
 	if (argc != 3)
 	{
@@ -22,45 +22,53 @@ int main(int argc, char *argv[])
 	file_from = argv[1];
 	file_to = argv[2];
 
-/* ----------------------file_from------------------------- */
 
-	fd_from = open(file_from, O_RDONLY);
 
-	ret_rd_from = read(fd_from, /*buff? , taille de file_from?*/);
-	if (ret_rd_from == -1)
-	{
-		dprintf(2, "Error: Can't read from file %s\n", file_from);
-		/* close ret_rd_from ? */
-		exit (98);
-	}
+	fd_from = open(file_from, O_RDONLY);								/* open from */
+	if (fd_from == -1)
+    {
+        dprintf(2, "Error: Can't read from file %s\n", file_from);
+        exit(98);
+    }
 
-	ret_close_from = close(ret_rd_from);
-	if (ret_close_from == -1)
-	{
-		dprintf("Error: Can't close fd %d\n", ret_close_from);
-		exit (100);
-	}
-
-/* -------------------------file_to------------------------- */
-
-	fd_to = open(file_to, O_CREAT | O_TRUNC, 0664);
+	fd_to = open(file_to, O_CREAT | O_WRONLY | O_TRUNC, 0664);			/* open to */
 	if (fd_to == -1)
 	{
 		dprintf(2, "Error: Can't write to %s\n", file_to);
 		exit(99);
 	}
 
-	ret_wr_to = write(fd_to, /* buuf?, sizeof file_from?*/ );
-	if (ret_wr_to == -1)
+	 
+	while ((rd_bytes = read(fd_from, buffer, 1024)) > 0)
 	{
-		dprintf(2, "Error: Can't write to %s\n", file_to);
-		exit(99);
+		if (rd_bytes == -1)				/* err read from */
+		{
+		dprintf(2, "Error: Can't read from file %s\n", file_from);
+		exit (98);			
+		}
+		else
+		{
+			wr_bytes = write(fd_to, buffer, rd_bytes);
+			if ((wr_bytes != rd_bytes) || (wr_bytes == -1))		/* err wr to*/
+			{
+				dprintf(2, "Error: Can't write to %s\n", file_to);
+				exit(99);
+			}
+		}
 	}
 
-	ret_close_to = close(fd_to);
+	ret_close_from = close(fd_from);									/* close from */
+	if (ret_close_from == -1)
+	{
+		dprintf(2, "Error: Can't close fd %i\n", fd_from);
+		exit (100);
+	}
+
+
+	ret_close_to = close(fd_to);										/* close to */
 	if (ret_close_to == -1)
 	{
-		dprintf("Error: Can't close fd %d\n", ret_close_to);
+		dprintf(2, "Error: Can't close fd %i\n", fd_to);
 		exit (100);
 	}
 

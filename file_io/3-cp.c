@@ -4,7 +4,7 @@
  * main - copies the content of a file to another file
  * @argc: number of argmnt passed to the prgm (must be 3)
  * @argv: array containing the args
- * Return: 1 if success, -1 if failure
+ * Return: 0 if success, -1 if failure
  */
 int main(int argc, char *argv[])
 {
@@ -28,7 +28,6 @@ int main(int argc, char *argv[])
 	if (fd_from == -1)
     {
         dprintf(2, "Error: Can't read from file %s\n", file_from);
-		close(fd_from);
         exit(98);
     }
 
@@ -36,7 +35,6 @@ int main(int argc, char *argv[])
 	if (fd_to == -1)
 	{
 		dprintf(2, "Error: Can't write to %s\n", file_to);
-		close(fd_to);
 		exit(99);
 	}
 
@@ -77,5 +75,5 @@ int main(int argc, char *argv[])
 		exit (100);
 	}
 
-	return (1);
+	return (0);
 }

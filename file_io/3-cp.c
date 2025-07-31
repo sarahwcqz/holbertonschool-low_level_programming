@@ -28,6 +28,7 @@ int main(int argc, char *argv[])
 	if (fd_from == -1)
     {
         dprintf(2, "Error: Can't read from file %s\n", file_from);
+		close(fd_from);
         exit(98);
     }
 
@@ -35,6 +36,7 @@ int main(int argc, char *argv[])
 	if (fd_to == -1)
 	{
 		dprintf(2, "Error: Can't write to %s\n", file_to);
+		close(fd_to);
 		exit(99);
 	}
 
@@ -44,7 +46,8 @@ int main(int argc, char *argv[])
 		if (rd_bytes == -1)				/* err read from */
 		{
 		dprintf(2, "Error: Can't read from file %s\n", file_from);
-		exit (98);			
+		close(fd_from);
+		exit (98);	
 		}
 		else
 		{
@@ -52,6 +55,8 @@ int main(int argc, char *argv[])
 			if ((wr_bytes != rd_bytes) || (wr_bytes == -1))		/* err wr to*/
 			{
 				dprintf(2, "Error: Can't write to %s\n", file_to);
+				close(fd_from);
+				close(fd_to);
 				exit(99);
 			}
 		}

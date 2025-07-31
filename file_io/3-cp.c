@@ -41,14 +41,6 @@ int main(int argc, char *argv[])
 	 
 	while ((rd_bytes = read(fd_from, buffer, 1024)) > 0)
 	{
-		if (rd_bytes == -1)				/* err read from */
-		{
-		dprintf(2, "Error: Can't read from file %s\n", file_from);
-		close(fd_from);
-		exit (98);	
-		}
-		else
-		{
 			wr_bytes = write(fd_to, buffer, rd_bytes);
 			if ((wr_bytes != rd_bytes) || (wr_bytes == -1))		/* err wr to*/
 			{
@@ -57,8 +49,13 @@ int main(int argc, char *argv[])
 				close(fd_to);
 				exit(99);
 			}
-		}
 	}
+			if (rd_bytes == -1)				/* err read from */
+		{
+		dprintf(2, "Error: Can't read from file %s\n", file_from);
+		close(fd_from);
+		exit (98);	
+		}
 
 	ret_close_from = close(fd_from);									/* close from */
 	if (ret_close_from == -1)

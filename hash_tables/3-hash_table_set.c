@@ -14,7 +14,7 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 
 	if (!ht || !key || !*key || !value)
 		return (0);
-	
+
 	index = hash_djb2(key);
 	index = key_index(index, ht->size);
 

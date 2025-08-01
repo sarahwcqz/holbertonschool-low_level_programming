@@ -15,17 +15,16 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	if (!ht || !key || !*key || !value)
 		return (0);
 
-	index = hash_djb2(key);
-	index = key_index(index, ht->size);
+	index = key_index((const unsigned char *)key, ht->size);
 
 	new_node = malloc(sizeof(hash_node_t));
 	if (new_node == NULL)
-		return (NULL);
+		return (0);
 
-		new_node->key = strdup(key);
-		new_node->value = strdup(value);
-		new_node->next = ht->array[index];
-		ht->array[index] = new_node;
+	new_node->key = strdup(key);
+	new_node->value = strdup(value);
+	new_node->next = ht->array[index];
+	ht->array[index] = new_node;
 
 	return (1);
 }

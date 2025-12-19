@@ -15,7 +15,7 @@ dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
 	while (i < idx)
 	{
 		temp = temp->next;
-		if (temp == NULL && i < idx - 1)		/* si l'index est plus grand que la liste aka si on arrive a un temp nul mais que i est pas arrive jsq idx */
+		if (temp == NULL && i < idx - 1)		/* si l'index est plus grand que la liste aka si on arrive a un node nul mais que i est pas arrive jsq idx */
 			return (NULL);
 		i++;
 	}
@@ -37,7 +37,7 @@ dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
 	if (new_node == NULL)
 		return (NULL);
 
-	new_node->n = n;			/* init le node*/
+	new_node->n = n;					/* init le node*/
 	new_node->prev = temp->prev;
 	new_node->next = temp;
 	if (temp->prev != NULL)				/* si on est pas en bout de liste on relie le precedent au new */

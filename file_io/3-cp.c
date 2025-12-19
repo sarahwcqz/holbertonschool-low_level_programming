@@ -50,12 +50,12 @@ int main(int argc, char *argv[])
 				exit(99);
 			}
 	}
-			if (rd_bytes == -1)				/* err read from */
-		{
+	if (rd_bytes == -1)				/* err read from */
+	{
 		dprintf(2, "Error: Can't read from file %s\n", file_from);
 		close(fd_from);
 		exit (98);	
-		}
+	}
 
 	ret_close_from = close(fd_from);									/* close from */
 	if (ret_close_from == -1)
